@@ -1,0 +1,377 @@
+/*
+ * TrunkSMS GPL project www.trunksms.com.
+ * 
+ * @author  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com
+ * @version 0.1
+ * @License
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ */
+<!--
+function getquee(){
+
+getqueue();
+
+}
+
+function delQueuedmesg(table,messageid){
+
+
+if(confirm("The message will not be sent if you delete")){
+delMessageFromQueue(table,messageid);
+//cause a 1 second delay here
+
+
+setTimeout(function(){getquee();},4000);
+				
+				//setTimeout(getquee(),7000);
+
+}
+
+}
+
+function getSheduledMesg(){
+getprocesedshedmesg();
+}
+
+function deleteContactUnderCa(cat){
+if(confirm("Are you sure you want to delete all the contacts in this category")){
+deleteContactUnderCat(cat);
+}
+
+}
+
+//functions.js
+function uploadimg (theform){
+  //Submit the form.
+  theform.submit();
+}
+
+
+function getAccountInfo(){
+getAccountInfos();
+}
+
+function getSMSForm(){
+goGetSMSForm();
+}
+
+function signOut(){
+if(confirm("Do you want to sign out")){
+signOutUser();
+}
+}
+
+function sendTo(typeOBJ){
+if(typeOBJ.value == "Single"){
+//alert("sending to single");
+getphoneBook();
+document.getElementById('single').innerHTML = "<td >Phone No: </td><td><label> <input  class = \"textboxex\" type=\"text\" name=\"single\" value=\"\"></label></td>";
+}else
+if(typeOBJ.value == "Single/CSV"){
+document.getElementById('single').innerHTML = "<td >Numbers: </td><td><label> <input  class = \"textboxex\" type=\"text\" name=\"csv_numbers\" value=\"\" autocomplete=\"off\"></label></td>";
+}else
+if(typeOBJ.value == "SELECT"){
+document.getElementById('single').innerHTML = "";
+}else{
+	getHowManyPeopleToSendSMS(typeOBJ.value);
+	
+document.getElementById('phoneBooks').innerHTML = "";
+
+}
+
+}//end func
+
+function getphoneBook(){
+getphoneBook_main(10);
+}
+
+function getphoneBook_main(max){
+getMoreContacts(0,max);
+}
+
+function getphoneBook2(){
+
+getphonebook(); //use of frame
+
+}
+
+function deleteCategory(id){
+if(id != "" || id != null){
+if(confirm("Delete Category From PhoneBook")){
+deleteCatigory(id);
+}
+	
+}
+}
+
+function deleteContact(id){
+if(id != "" || id != null){
+if(confirm("Delete Contact From PhoneBook")){
+deleteContactFromPB(id);
+}
+	
+}
+}
+
+function editCatforThisuser(){
+if(document.editCatForm.catego.value.length == 0){
+alert("Category Cannot be empty");
+return false;
+}
+
+if(document.editCatForm.catID.value == ""){
+alert("You cannot edit this Category");
+return false;
+}
+
+editingCat(document.editCatForm.catego.value, document.editCatForm.submit.value, document.editCatForm.catID.value);//we are not passing the owner. we get owner from session
+
+
+}
+
+function editCategory(categoryName, catID){//we are using the name as beign unik
+document.getElementById('middle_panel').innerHTML = "<div><h2>Edit Category<h2></div><div class = \"login\"><form name = \"editCatForm\" action = \"\" method = \"\" onSubmit = \"editCatforThisuser(); return false;\"><table><tr><td>Category</td><td><input type = \"hidden\" name = \"catID\" value =\"" + catID + "\"><input type = \"text\" name = \"catego\" value = \" " + categoryName + "\"></td></tr><tr><td></td><td><input type = \"submit\" name = \"submit\" value = \"Edit\"></td></tr></table></form></div><div class = \"delete\"><a href = \"\" onClick = \"deleteCategory(" + catID + "); return false;\">Delete this Category</a> | <a href = \"\" onClick = \"deleteContactUnderCa(" + catID + "); return false;\">Delete Contacts Under this Category</a></div>";
+}
+
+function EditContactBr(){
+if(document.editContactForm.id.value != null || document.editContactForm.id.value != ""){
+if(document.editContactForm.category.value == "No category" || document.editContactForm.contactName.value.length == 0 || document.editContactForm.phoneNo.value.length == 0){
+alert("Please makes sure you choose category or add one and no field should be empty");
+}else{
+//send to php
+editContacts(document.editContactForm.phoneNo.value, document.editContactForm.contactName.value, document.editContactForm.category.value, document.editContactForm.addContact.value, document.editContactForm.id.value );
+}
+//EditContact
+}else{
+//contact id does not exist
+alert("You cannot edit this contact because it does not exist");
+}
+
+}
+
+function editContactFormb(contactID){
+geteditContactForm(contactID);
+}
+
+function getMoreContacts(offset,limit){
+getContactswith(offset,limit);
+}
+
+function InsertNumber(number){
+	if(document.form1){
+	    if(document.form1.category){
+		if(document.form1.category.value == "Single"){
+			if(document.form1.single){
+			document.form1.single.value = number;
+			}
+		}
+	   }
+	}
+
+}
+
+function getContactForm(){
+getContactFormFrmServer();
+}
+
+function getPaymentType(){
+getRechargeForm();
+}
+
+function RechargeSMS(){
+var pin = document.Recharge.pin.value;
+var serial = document.Recharge.serial.value;
+
+//validate here before the call
+
+RechageSMS2(pin,serial);
+//getAccountInfo();
+}
+
+function getTransferSMSForm(){
+getTransferSMSForm2()
+}
+
+function getDownloads(){
+
+}
+function getCSV_form(){
+getCSV_formPHP();
+}
+
+function getaddCatForm(){
+document.getElementById('middle_panel').innerHTML = "<div><table><tr><td><img src = \"./images/trunkons/category.png\"></td><td><h2>Add Category<h2></td></tr></table></div><div class = \"login\"><form name = \"catForm\" action = \"\" method = \"\" onSubmit = \"submitCatAndGetAddContactForm(); return false;\"><table><tr><td>Category</td><td><input type = \"text\" name = \"catego\"></td></tr><tr><td></td><td><input type = \"submit\" name = \"submit\" value = \"Add\"></td></tr></table></form></div>";
+}
+
+function submitCatAndGetAddContactForm(){
+if(document.catForm.catego.value.length == 0 ){
+alert("Please Enter a category before submiting");
+}else{
+if(confirm("Add PhoneBook Category")){
+submitCategory(document.catForm.catego.value, document.catForm.submit.value);
+}
+}
+
+}//end func
+
+function submitContacts(){
+if(document.addContact.category.value == "No category" || document.addContact.contactName.value.length == 0 || document.addContact.phoneNo.value.length == 0){
+alert("Please makes sure you choose category or add one and no field should be empty");
+}else{
+//send to php
+sendContactToPHP(document.addContact.phoneNo.value, document.addContact.contactName.value, document.addContact.category.value, document.addContact.addContact.value );
+}
+
+}
+
+
+function sendSMS(){
+var reply = authenticate();
+
+  if(reply){
+
+		var smsname = document.form1.smsname.value;
+		var smsMessage = document.form1.SMSmessage.value;
+		var date = document.form1.date.value;
+		var time = document.form1.time.value;
+		var group = document.form1.category.value;
+
+	if(document.form1.category.value == "Single"){
+	
+	var phoneNo = document.form1.single.value;
+	//document.write(date + time);
+	ajaxSendSMS_Single(smsname, phoneNo, smsMessage, date, time);
+	
+	}else
+	if(document.form1.category.value == "Single/CSV"){
+	var csv = document.form1.csv_numbers.value;
+	sendCSV_Numbers(smsname, csv, smsMessage, date, time);
+	}else{
+	ajaxSendSMS_group(smsname,group,smsMessage,date,time);
+	
+	}
+
+  }else{
+  alert("Message Not Sent");
+  }
+//getAccountInfo();  
+}//end sendSMS()
+
+
+function authenticate(){
+var smsobj = document.form1.SMSmessage;
+var sms = document.form1.SMSmessage.value;
+var smsname = document.form1.smsname.value;
+var errormesg = "<br/>";
+var ok = true
+
+
+if(smsname.length == 0){
+errormesg += "<p>You Cannot send an empty Name </p>";
+ok = false;
+}
+
+if(sms.length == 0){
+errormesg += "<p>You Cannot send an empty message</p>";
+ok = false;
+}
+//if you can unset a variable. that will be nice
+if(document.form1.single){
+	if(document.form1.single.value.length == 0){
+	errormesg += "<p>Invalid Sending Option. <em>May<em> be the phone number entry is empty</p>";
+	ok = false;
+	}
+}
+
+if(document.form1.csv_numbers){
+	if(document.form1.csv_numbers.value.length == 0){
+	errormesg += "<p>Invalid Sending Option. <em>May<em> be the phone numbers entry is empty</p>";
+	ok = false;
+	}
+}
+
+if(document.form1.category.value == "SELECT"){
+errormesg += "<p>Invalid Send To Option.</p>" ;
+	ok = false;
+}
+
+//VALIDATE TIMES HERE
+if(true){
+
+if(document.form1.date.value == "TODAY" && document.form1.time.value == "NOW"){
+}else{
+	var error = ValidateTime(document.form1.time.value); 
+
+		if(error != ""){
+		errormesg += error;
+		ok = false;
+		}
+	}
+}
+
+if(errormesg != "<br/>"){
+errordialog(errormesg);
+}
+
+if(ok){
+var pages = getCount(smsobj,true);
+if(!confirm("You are sending " + pages + " page(s) sms")){
+ok = false;
+}
+
+}
+
+
+
+
+return ok;
+}//end func
+
+function getCount(count,dont){
+var pages;
+var number = count.value;
+if(number.length > 160 && number.length < 320){
+pages = "2";
+	if(!dont){
+alert("You are Sending Two pages, which will cost you 2 times");
+}
+document.getElementById('count').innerHTML = number.length + "/320";
+}else
+if(number.length > 320){
+	if(!dont){
+alert("You are Sending More than Two pages");
+	}
+pages = "2+";
+document.getElementById('count').innerHTML = number.length + "/480";
+}else{
+document.getElementById('count').innerHTML = number.length + "/160";
+pages = "1";
+}
+return pages;
+}//end func
+
+
+function TransferCredit(){
+if(document.TransferSMS.acctno.value == "" || document.TransferSMS.units.value.length == 0 || document.TransferSMS.units.value == ""){
+alert("Oops! Please fill the form correctly");
+}else{
+//send to php
+sendTransferCredData(document.TransferSMS.acctno.value, document.TransferSMS.units.value);
+}
+//getAccountInfo();
+}
+
+-->

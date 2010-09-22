@@ -1,0 +1,51 @@
+<?php
+/* Have you got Christ?
+ * TrunkSMS GPL project www.trunksms.com.
+ * 
+ * @author  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com
+ * @version 0.1
+ * @License
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ */
+session_start();
+if(strlen($_SESSION['phoneNo']) > 0){
+?>
+<div><table><tr><td><img src = "./images/trunkons/collaboration.png"></td><td><h2>Transfer Credits</h2></td></tr></table></div>
+<div class = "login">
+<form name = "TransferSMS" action = "post" method = "./" onSubmit = "TransferCredit(); return false;">
+<table>
+<tr>
+<td>Account No:</td><td><input type = "text" name = "acctno" class = "textboxex"></td>
+</tr>
+<tr>
+<td>Units:</td><td><input type = "text" name = "units" class = "textboxex"></td>
+</tr>
+<tr>
+<td></td><td><input type = "submit" name = "transfer" value = "Transfer"></td>
+</tr>
+</table>
+</form>
+</div>
+<!--<div id = "categoryForm">this is where category form comes- -->
+<div  class = "back"><a style = "text-decoration: none;" href = "./" onClick = "getSMSForm(); return false;">back</a></div>
+<?php
+}else{
+echo "<div id = \"failure\">";
+	echo "Request Failed! click <a href = \"./\">here</a> ";
+	echo "</div> <!-- end failure -->";
+	echo "<div  class = \"back\"><a style = \"text-decoration: none;\" href = \"./\" onClick = \"getSMSForm(); return false;\">back</a></div>";
+}
+?>

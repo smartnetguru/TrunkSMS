@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /Backends/
+Disallow: /cronjob/
+Disallow: /gateway2/
+Disallow: /backups/
+Disallow: /jquery/
+Disallow: /FrontEnds/
+Disallow: /gateway3/
+Disallow: /gateway/
+Allow: /
+Allow: /homepage/
+Allow: /Profile/
+Allow: /images/
+Disallow: /includes/
+Disallow: /advert/
+Disallow: /API/
+Disallow: /database/
+Disallow: /css/
+

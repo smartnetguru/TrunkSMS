@@ -1,0 +1,72 @@
+
+<!--
+#header{
+font-size:12px;
+padding-right: 10px;
+/*border-bottom:1px solid #c3d9ff;*/
+border-right: none;
+border-top: none;
+border-left: none;	
+text-align: right;
+margin-bottom: 3px;
+margin-top: 3px;
+}
+
+.back{
+text-align: right; 
+margin-right: 100px;
+}
+
+
+#banner{
+}
+
+#success{
+	background: url(../images/ico.check.gif) left top no-repeat #FFFECC;
+	padding: 8px;
+	margin: 10px 0px 20px 20px;
+	border-top: 1px solid #FAEBB1;
+	border-bottom: 1px solid #FAEBB1;
+	color: #336633;
+	margin-bottom: 10px;
+	text-align: center;
+	
+}
+#failure {
+	background: url(../images/alert.gif) left top no-repeat #FFFECC;
+	padding: 50px;
+	text-align: center;
+	margin: 10px 100px 0px 0px;
+	border-top: 1px solid #FAEBB1;
+	border-bottom: 1px solid #FAEBB1;
+	color: #ff0000;
+}
+
+
+#footer{
+clear: left;
+margin-top: 5px;
+text-align: center;
+font-size: 11px;
+color: #9d9f13;
+text-align: center;
+}
+
+#middle_panel{
+margin-left: 10px;
+margin-top: 1px;
+}
+
+#right_panel{
+margin-left: 0px;
+
+}
+#left_panel{
+border-style:solid;
+border-color:#c3d9ff;
+border-top: none;
+border-left: none;
+border-bottom: none;
+/*height: 400px;*/
+}
+-->

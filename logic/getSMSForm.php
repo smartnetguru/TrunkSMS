@@ -1,0 +1,125 @@
+<?php
+/* Have you got Christ?
+ * TrunkSMS GPL project www.trunksms.com.
+ * 
+ * @author  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com
+ * @version 0.1
+ * @License
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ */
+session_start();
+?>
+
+<?php
+		echo "<div class=\"ui-widget\">";
+				echo "<div class=\"ui-state-highlight ui-corner-all\" style=\"margin-top: 20px; padding: 0 .7em;\">"; 
+				echo "<p><span class=\"ui-icon ui-icon-info\" style=\"float: left; margin-right: .3em;\"></span>";
+				echo "<div style = \"margin-top:10px; margin-bottom:10px; padding-top: 5px; color: blue; font-size: 12px;\"><strong>SMS HowTo: </strong> To send SMS to one contact, select single/CSV from the sendTo menu then enter the Phone number e.g 08077746115 or 08077746115,07033821024 to send to two contacts and many more separated with comma hence CSV(comma separated values). Alternatively, every category has phone numbers in them. To send to a category, simply select it from the menu and your SMS will be dispatched to all phone numbers in that category.</div>";
+				
+				echo "</p>";
+				echo "</div></div>";
+?>
+
+<div id = "sms_title"><table><tr><td><img src = "./images/trunkons/current-work.png"></td><td><h2>Send SMS</h2></td></tr></table></div>
+    <div id = "sms">
+    <div id="Registration">
+   
+      <form id="form1" name="form1" method="post" action="../" onSubmit = "sendSMS(); return false;">
+        <table width="100%" border="0" cellpadding="5">
+             <tr>
+            <td width="40%">Send To</td>
+            <td width="60%" id = "catOptions">
+            <?php
+require_once "../includes/trunk_config.php";
+$phoneNo = $_SESSION['phoneNo']; //session variable
+$conn =@mysql_connect(HOST,USER,PASS) or die("Skywalkers Nig: Cannot Connect To the Database Server");
+@mysql_select_db(DB,$conn) or die ("Skywalkers Nig: Cannot Select Database Please Try Again later");
+
+	if(isset($phoneNo)){
+		echo "<label>";
+              	echo "<select name=\"category\" onChange = \"sendTo(this);\">";
+             	echo "<option>SELECT</option>";
+   	        echo "<!--<option>Single</option>-->"; //next option will take care of this
+                echo "<option>Single/CSV</option>";
+                echo "<option>All</option>";
+                $sql = "SELECT * FROM TRUNKphoneBookCat WHERE phoneNo = '$phoneNo' AND category != '{$rows['category']}' ";
+                $result = @mysql_query($sql);
+                $num = 0;
+                $num = @mysql_num_rows($result);
+                if($num == 0){
+                	
+                }else{
+                	while($rows = @mysql_fetch_array($result)){
+                	echo "<option>{$rows['category']}</option>";	
+                	}
+                }
+              	echo "</select>";
+           	echo "</label></td>";
+          }else{
+          echo "Not Allowed";
+          }
+ ?>
+          </tr>
+          <tr id = "single">
+          </tr>
+          <tr>
+            <td width="40%">Characters </td>
+            <td width="60%" align = "right"><label id = "count">0/160</label></td>
+          </tr>
+          
+          
+            <tr>
+            <td>Message:</td>
+            <td><label>
+              <textarea name="SMSmessage" class = "message" onChange = "getCount(this); "></textarea>
+            </label></td>
+          </tr>
+          
+               
+          
+                <tr>
+            <td>Date:</td>
+            <td><label>
+              <input type ="text" id="datepicker" disabled = "disabled" name = "date" size = "10" class = "smsnamex" onClick = "DaserinitDate();" onchange = "DaserinitDateDialog();" value = "TODAY"/><a href = "" onClick = "DaserinitDate(); return false;">change</a>
+           <!-- we dont need this line -->   <input type ="hidden" id="displayDate" name = "displaydatex" size = "14" class = "smsnamex"/>
+            </label></td>
+          </tr>
+          
+           <tr>
+            <td>Time:</td>
+            <td><label>
+              <input type ="text" id="timex" name = "time" size = "5" class = "smsnamex" onClick = "" onchange = "TimesNotification();" value = "NOW"/>
+           <!-- we dont need this line    <input type ="hidden" id="displayDate" name = "displaydatex" size = "14" class = "smsnamex"/>-->
+            </label></td>
+          </tr>
+          
+                 <tr>
+            <td>SMS Name:</td>
+            <td><label>
+              <input type ="text" name = "smsname" class = "smsnamex"/>
+            </label></td>
+          </tr>
+                    <tr>
+            <td>&nbsp;</td>
+            <td><label id = "submitbutn">
+              <input type = "submit" name="submit" class="formsubmit" value="Send" />
+            </label></td>
+          </tr>
+        </table>
+        </form>
+      </div><!-- end div registration -->
+    
+</div><!-- end sms-->

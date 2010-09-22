@@ -1,0 +1,33 @@
+<?php
+
+require_once "../includes/trunk_config.php";
+
+
+$conn =@mysql_connect(HOST,USER,PASS) or die("Skywalkers Nig: Cannot Connect To the Database Server");
+	
+	mysql_select_db(DB,$conn) or die (mysql_error() . "Skywalkers Nig: Cannot Select Database Please Try Again later");
+	
+	$status = 0; //overal status of operation
+	
+	$result = mysql_query("CREATE TABLE IF NOT EXISTS `TRUNKsent` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `org` varchar(255) NOT NULL,
+  `phoneNo` varchar(255) NOT NULL,
+  `toNum` varchar(255) DEFAULT NULL,
+  `mesg` blob NOT NULL COMMENT 'SMSlog',
+  `fromNa` varchar(255) DEFAULT NULL,
+  `units` int(10) DEFAULT NULL,
+  `statusMsg` blob,
+  `date` date DEFAULT NULL,
+  `sent` int(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;") or die(mysql_error());
+
+if($result){
+	
+	print "Successfuly created TRUNKsent table for Trunksms.com<br/>";
+	
+}else{
+print "Failure creating TRUNKsent table for Trunksms.com <br/>";
+}
+?>

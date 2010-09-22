@@ -1,0 +1,102 @@
+<!--
+
+.noshow{
+width: 500px;
+margin-top: 10px;
+height: 180px;
+border: none;
+}
+#error {
+	background: url(../images/alert.gif) left top no-repeat #FFFECC;
+	padding: 8px;
+	padding-left: 5px;
+	margin: 10px 0px 0px 0px;
+	border-top: 1px solid #FAEBB1;
+	border-bottom: 1px solid #FAEBB1;
+	color: #336633;
+	margin-bottom: 5px;
+}
+.login{
+/*background: url(../images/login_bkg-vr1952.gif) left top repeat-x;*/
+background-color: #c3d9ff;
+font-size: 11px;
+padding-top: 10px;
+padding-left: 5px;
+margin-left: 10px;
+margin-right: 10px;
+padding-bottom: 8px;
+width: auto;
+}
+
+.loginExt{
+/*background: url(../images/login_bkg-vr1952.gif) left top repeat-x;*/
+background-color: #c3d9ff;
+font-size: 11px;
+padding-top: 10px;
+padding-left: 10px;
+margin-left: 10px;
+margin-top: 10px;
+margin-right: 10px;
+padding-bottom: 8px;
+width: auto;
+}
+
+#sms{
+/*background: url(nav_bg-vr1952.gif) left top repeat-x;	*/
+/*background: url(../imgs/login_bkg-vr1952.gif) left top repeat-x;*/
+background-color: #c3d9ff;
+border-bottom:1px solid #d0e1ce; border-left:1px solid #d0e1ce;	
+border-right:1px solid #d0e1ce;	
+border-color: #336633;
+width:300px;
+padding:30px 30px;	
+margin-left: 20px;
+margin-right: 20px;
+font-size: 11px;
+}
+
+.message{
+height: 100px;
+width: 150px;
+border-color: #c3d9ff;
+}
+.smsnamex{
+border-color: #c3d9ff;
+}
+
+.textboxex{
+border-color: #c3d9ff;
+}
+
+#acctInfo{
+background-color: #c3d9ff;
+border-bottom:1px solid #d0e1ce; border-left:1px solid #d0e1ce;	
+border-right:1px solid #d0e1ce;	
+font-size: 12px;
+padding-top: 10px;
+padding-left: 10px;
+margin-left: 10px;
+margin-right: 5px;
+padding-bottom: 8px;
+width: auto;
+}
+
+#phoneBooks{
+font-size: 13px;
+height: auto;
+}
+
+#fbooktitle{
+/*background-color: #c3d9ff;*/
+/*background: url(../images/header_back.jpg) left top repeat-x;*/
+
+}
+
+#fbookbody{
+height: auto;
+/*background: url(../images/header_back.jpg) left top repeat-x;*/
+border-bottom:1px solid #d0e1ce; border-left:1px solid #d0e1ce;	
+background-color: #c3d9ff;
+
+}
+-->

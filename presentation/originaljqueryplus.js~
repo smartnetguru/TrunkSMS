@@ -1,0 +1,142 @@
+/*
+ * TrunkSMS GPL project www.trunksms.com.
+ * 
+ * @author  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com
+ * @version 0.1
+ * @License
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Library General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ */
+		function DaserinitDate(){		
+		$("#datepicker").datepicker({
+			minDate: 0, maxDate: '+2M',
+			showOn: 'button',
+			buttonImage: 'images/calendar.gif',
+			buttonImageOnly: false,
+			altField: '#displayDate', 
+			altFormat: 'DD, d MM, yy'
+			
+		});
+		
+		} //end func
+		
+		function DaserinitDateDialog(){
+		document.getElementById("dialog-message").style.visibility = "";
+		document.getElementById("upperMesg").innerHTML  = "Your SMS will be sent on";
+		document.getElementById("lowerMesg").innerHTML = document.form1.displaydatex.value + " Please Set The Time entry below";
+		
+
+		$("#dialog").dialog("destroy");
+	
+		$("#dialog-message").dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+		
+		document.form1.time.value = "";
+
+		}//end func
+		
+		
+		function errordialog(error){
+		document.getElementById("dialog-message").style.visibility = "";
+		document.getElementById("upperMesg").innerHTML  = "Error Messages";
+		document.getElementById("lowerMesg").innerHTML = error;
+		
+
+		$("#dialog").dialog("destroy");
+	
+		$("#dialog-message").dialog({
+			modal: true,
+			height: 400,
+			width: 350,
+			buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+
+		}//end func
+		
+		function sendconfirm(){
+		$("#dialog").dialog("destroy");
+	
+		$("#dialog-confirm").dialog({
+			resizable: false,
+			height:140,
+			modal: true,
+			buttons: {
+				'Delete all items': function() {
+					$(this).dialog('close');
+				},
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+		
+		}//end func
+		
+		function updateProgressbar(pmessage, percentage, show){
+		
+			if(show == 1){
+				progressbarmessage(pmessage)
+				$("#progressbar").progressbar({
+					value: percentage
+				});
+			}else{
+			//cause a 1 second delay here
+				setTimeout(function(){
+				$("#progress").dialog("destroy");
+				},500 );
+				
+			}
+		
+		}//end func
+		
+		function dialogPopUp(server_response){
+		
+			// Dialog		
+			document.getElementById("dialog").innerHTML = server_response;
+				$('#dialog').dialog({
+					autoOpen: true,
+					width: 600,
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+						}
+					}
+				});
+
+		
+		}//end func
+		
+		function progressbarmessage(pmessage){
+		
+		document.getElementById("progress").style.visibility = "";
+		document.getElementById("progress_upperMesg").innerHTML  = "<p>" + pmessage + "</p>";
+		
+		$("#progress").dialog("destroy");
+			
+		$("#progress").dialog({
+			modal: true
+		});
+		
+		}

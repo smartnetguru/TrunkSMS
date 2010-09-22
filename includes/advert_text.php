@@ -1,0 +1,1 @@
+Get involved! <a href = "http://www.frendtool.com/get_started.php">Frendtool</a> keeps Nigerians in touch with friends, families and relatives. <a href = "http://www.frendtool.com/get_started.php">Join</a> now!!

@@ -1,0 +1,26 @@
+<?php
+
+require_once "../includes/trunk_config.php";
+
+
+$conn =@mysql_connect(HOST,USER,PASS) or die("Skywalkers Nig: Cannot Connect To the Database Server");
+
+	mysql_select_db(DB,$conn) or die (mysql_error() . "Skywalkers Nig: Cannot Select Database Please Try Again later");
+	
+	//$query = file_get_contents("trunktables.sql");
+	
+	$status = 0; //overal status of operation
+	
+	$result = mysql_query("
+INSERT INTO `TRUNKroot` (`username`, `password`) VALUES
+('daser', 'adeniks2020');") or die(mysql_error());
+
+if($result){
+	
+	print "Successfuly created username for Trunksms.com<br/>";
+	
+}else{
+
+print "Failure Trunksms.com <br/>";
+}
+

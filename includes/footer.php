@@ -1,0 +1,1 @@
+Copyleft 2010 Daser <!-- PLEASE DONT REMOVE THIS LINE-->
