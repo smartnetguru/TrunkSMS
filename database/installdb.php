@@ -93,20 +93,20 @@ print "Failure creating TRUNKrecharging table for Trunksms.com <br/>";
 $status = 0;
 }		
 	
-$result = mysql_query("CREATE TABLE IF NOT EXISTS TRUNKregistration (
-  phoneNo varchar(255) NOT NULL,
-  org varchar(255) NOT NULL,
+$result = mysql_query("CREATE TABLE IF NOT EXISTS `TRUNKregistration` (
+  `phoneNo` varchar(255) NOT NULL,
+  `org` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  email varchar(255) NOT NULL,
-  activated int(255) NOT NULL,
-  emailCode varchar(255) NOT NULL,
-  phoneCode varchar(255) NOT NULL,
-  countryCode varchar(255) NOT NULL,
-  address blob,
-  how varchar(255) DEFAULT NULL,
-  AccountNo varchar(255) DEFAULT NULL,
-  SMSunits int(11) DEFAULT NULL,
-  PRIMARY KEY (phoneNo)
+  `email` varchar(255) NOT NULL,
+  `activated` int(255) NOT NULL,
+  `emailCode` varchar(255) NOT NULL,
+  `phoneCode` varchar(255) NOT NULL,
+  `countryCode` varchar(255) NOT NULL,
+  `address` blob,
+  `how` varchar(255) DEFAULT NULL,
+  `AccountNo` varchar(255) DEFAULT NULL,
+  `SMSunits` int(11) DEFAULT NULL,
+  PRIMARY KEY (`phoneNo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;") or die(mysql_error());
 	
 if($result){
@@ -135,15 +135,22 @@ print "Failure Populating TRUNKregistration table for Trunksms.com <br/>";
 $status = 0;
 }
 
-$result = mysql_query("CREATE TABLE IF NOT EXISTS TRUNKsent (
-  id int(255) NOT NULL AUTO_INCREMENT,
-  org varchar(255) NOT NULL,
-  toNum varchar(255) DEFAULT NULL,
-  fromNa varchar(255) DEFAULT NULL,
-  date date DEFAULT NULL,
-  sent int(255) DEFAULT NULL,
-  PRIMARY KEY (id)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;") or die(mysql_error());
+
+
+$result = mysql_query("CREATE TABLE IF NOT EXISTS `TRUNKsent` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `org` varchar(255) NOT NULL,
+  `phoneNo` varchar(255) NOT NULL,
+  `toNum` varchar(255) DEFAULT NULL,
+  `mesg` blob NOT NULL COMMENT 'SMSlog',
+  `fromNa` varchar(255) DEFAULT NULL,
+  `units` int(10) DEFAULT NULL,
+  `statusMsg` blob,
+  `date` date DEFAULT NULL,
+  `sent` int(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+") or die(mysql_error());
 	
 if($result){
 	
