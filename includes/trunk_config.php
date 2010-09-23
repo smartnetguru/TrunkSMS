@@ -5,7 +5,7 @@
  * 
  * @author  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com
  * @version 0.1
- * @License
+ * @License GPL
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

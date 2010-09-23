@@ -1,13 +1,10 @@
-<?php
-setcookie('web','www.TrunkSMS.com',time( ) + 60*60*60);
-?>
 <!--
 /* Have you got Christ?
  * TrunkSMS GPL project www.trunksms.com.
  * 
  * @author  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com
  * @version 0.1
- * @License
+ * @License GPL
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +21,10 @@ setcookie('web','www.TrunkSMS.com',time( ) + 60*60*60);
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
  -->
+ <?php
+require_once "./includes/trunk_config.php";
+$sitename = WEBSITE_ADDRESS;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -33,15 +34,15 @@ setcookie('web','www.TrunkSMS.com',time( ) + 60*60*60);
 <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 
 <link rel="stylesheet" media="all" type="text/css" href="./css/menu_style.css" />
-<title>TrunkSMS - A platform to send Bulk SMS to Nigerian Mobile Networks.</title>
-<META name="description" content = "TrunkSMS lets you Send Bulk SMS to all Mobile Networks in Nigeria in one Click">
-<META name="keywords" content = "TrunkSMS, Send Bulk SMS,  send free SMS, Cheap SMS, affordable SMS, website that you can send free sms, Nigeria, MTN Nigeria, Zain, Glo Nigeria">
+<title>Send Bulk SMS from Internet.</title>
+<META name="description" content = "Send Bulk SMS From Internet to Mobile Phone">
+<META name="keywords" content = "Send Bulk SMS From Internet to Mobile Phone">
 
 	
-		<script type = "text/javascript" src ="./FrontEnds/jqueryplus.js"></script>
+		<script type = "text/javascript" src ="./presentation/jqueryaddition.js"></script>
 
-		<script type = "text/javascript" src ="./FrontEnds/sendRegData.js"></script>
-		<script type = "text/javascript" src = "./FrontEnds/home.js"></script>		<link rel="stylesheet" type="text/css" href="./css/common.css">
+		<script type = "text/javascript" src ="./presentation/ajaxReq.js"></script>
+		<script type = "text/javascript" src = "./presentation/homepage.js"></script>		<link rel="stylesheet" type="text/css" href="./css/common.css">
 		<link rel="stylesheet" type="text/css" href="./css/home.css">
 
 	<link type="text/css" href="./jquery/css/ui-lightness/jquery-ui-1.8.custom.css" rel="stylesheet" />
@@ -112,50 +113,11 @@ margin: 10px;
 margin-top: 0;
 }
 </style>
-<script type = "text/javascript">
-function notify(){
-document.getElementById("loading").innerHTML = "";
-document.getElementById("Tbody").style.visibility = "";
 
-<?php
-
-if(strlen($_COOKIE['web']) == 0 || empty($_COOKIE['web'])){
-echo "var x = 1;\n";
-}else{
-echo "var x = 0;\n";
-}
-
-?>
-if(x == 1)alert("Welcome, Use Firefox, Google Chrome, Opera for Best view");
-
-}
-
-</script>
-
-
-<script type="text/javascript">
-var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-17805253-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();
-</script>
 
 </head>
-<body onLoad = "notify();">
+<body>
 
-<div id = "loading" style = "font-size: 40px; color: #336633;">Loading, Please Wait..
-
-<div class="ui-widget">
-			<div class="ui-state-default ui-corner-all " style="margin-top: 20px; padding: 2px; font-size: 13px; color: #336633;"> 
-			
-Please wait while TrunkSMS gets loaded. Slow network connection? Click <a href = "./slow/">here</a> for a design with less funtionality.
-
-<p>TrunkSMS is designed for Mozila Firefox, Google Chrome, Opera and diverse FOSS browsers.</p>
- </div><!-- ui-state -->
- 
- </div><!-- ui-widget -->
-
-
-</div>
-
-<div id = "Tbody" style = "visibility: hidden;">
 
 <div id = "header">Welcome Guest!</div>
 
@@ -183,16 +145,17 @@ include("includes/logo.php");
 <div class="ui-widget">
 			<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
 				<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-				<strong>Hey! </strong><?php include "./includes/advert_text.php"; ?></p>
+TrunkSMS works on all browser except in I.E where you will have email me to tell me if it works</p>
 			</div>
 
 		</div>
 </div><!-- end serverstatus -->
 
+
 <div class="ui-widget">
 			<div class="ui-state-default ui-corner-all " style="margin-top: 20px; padding: 2px; font-size: 13px; color: #336633;"> 
-Have problem logging in? Slow network connection? Click <a href = "./slow/">here</a> for a design with less funtionality. <p>		
-TrunkSMS is designed for Mozila firefox, google chrome, opera and diverse FOSS browsers.</p>
+
+Use Free 'n' Open Source Technologies
  </div><!-- ui-state -->
  
  </div><!-- ui-widget -->
@@ -231,21 +194,7 @@ TrunkSMS is designed for Mozila firefox, google chrome, opera and diverse FOSS b
 <td><label>*Country:</label></td><td>
 
 <select name = "country">
-<?php
-require_once "./includes/trunk_config.php";
-	$conn =mysql_connect(HOST,USER,PASS) or die("Skywalkers Nig: Cannot Connect To the Database Server");
-	mysql_select_db(DB,$conn) or die ("Skywalkers Nig: Cannot Select Database Please Try Again later");
-	$sql = "SELECT * FROM TRUNKsuported";
-	$result = mysql_query($sql);
-	$num = mysql_num_rows($result);
-	if($num == 0){
-	echo "<option>No country</option>";
-	}else{
-		while($rows = mysql_fetch_array($result)){
-		echo "<option>{$rows['code']}</option>";
-		}
-	}
-?>
+<option>Nigeria</option>
 </select>
 </td>
 </tr>
@@ -312,35 +261,27 @@ require_once "./includes/trunk_config.php";
 <div class="ui-widget">
 			<div class="ui-state-default ui-corner-all" style="margin-top: 20px; padding: 2px; font-size: 13px;"> 
 
- <table><tr><td><img src = "./images/trunkons/document-library.png"></td><td><div><h4>What is TrunkSMS?</h4></div></td></tr></table>
- <div style = "color: #336633;">
- <p>TrunkSMS is an application that Enables you to send SMS to Friends and Families in Nigeria.</p><p>You can schedule SMS for specified times.</p> <p>Send SMS to Many People at ones which is useful for Invitations of any sort, Businesses, Religous Bodies and organisational Use.</p><p>We provide SMS units in form of scratch cards usually:</p>
- <ul>
- <li>N100 = 20 Units</li>
- <li>N200 = 40 Units</li>
- <li>N500 = 100 Units</li>
- </ul>
+<p>
+ <b>author:  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com<br/>
+ version: 0.1<br/>
+ License: GPL<br/>
+ Modification is welcome at www.github.com/trunksms</b><br/>
+ <p>
+ TrunkSMS is free software; you can redistribute it and/or modify<br/>
+ it under the terms of the GNU General Public License as published by<br/>
+ the Free Software Foundation; either version 2 of the License, or<br/>
+ (at your option) any later version.<br/>
+  </p><p>
+ This program is distributed in the hope that it will be useful,<br/>
+ but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+ GNU Library General Public License for more details.<br/></p>
+ <p> 
+ You should have received a copy of the GNU General Public License<br/>
+ along with this program; if not, write to the Free Software<br/>
+ Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA<br/>
+ </p>
  
- These are obtainable in Cyber Cafes within our coverage in Nigeria.<!-- Click <a style = "color: blue;" href = "#">here</a> to see the list of cyber cafes nearest to your location -->
- </div><!--end coloring-->
- 
- <table><tr><td><img src = "./images/trunkons/special-offer.png"></td><td><div><h4>Supported Networks</h4></div></td></tr></table>
- 
- <div style = "color: #336633;">
- <div id = "supported" style = "">
- TrunkSMS supports the Following Mobile Network and is subject to additions as our team is working hard to ensure that it covers all Nigerian Mobile Networks:
- 
- <ul>
- <li>Etisalat</li>
- <li>Glo Nigeria</li>
- <li>MTN Nigeria</li>
- <li>Starcoms</li>
- <li>Zain Nigeria</li>
-  
- 
- </ul>
- </div><!-- end coloring green -->
- </div><!-- end supoted -->
  </div><!-- ui-state -->
  
  </div><!-- ui-widget -->
@@ -398,13 +339,12 @@ require_once "./includes/trunk_config.php";
     <div id = "activationForm" style = "margin-top: 5px; margin-left: 30px; color: blue;"><!-- activation form invoked with ajax--></div> <!-- end activationForm -->
     
     </div><!-- end activate-->
-    <div id = "miniadv"><?php include "./includes/advert.php" ?></div>
     
     
     <div class="ui-widget">
 			<div class="ui-state-default ui-corner-all " style="margin-top: 20px; padding: 2px; font-size: 13px; color: #336633;"> 
 			
-<div id = "address"><address>Contact us: Roxate Cyber Cafe @ 39 Dass Road, Yelwa Tudu, Bauchi State. or call  Victor: 08083349699 victornuhu@trunksms.com</address></div>
+<div id = "address"><address>Contact us information here</address></div>
  </div><!-- ui-state -->
  
  </div><!-- ui-widget -->
@@ -418,7 +358,7 @@ require_once "./includes/trunk_config.php";
 
 
 <div id = "hidendialogs">
-<div id="dialog-message" title="TrunkSMS" style= "visibility: hidden;">
+<div id="dialog-message" title="<?php echo $sitename ?>" style= "visibility: hidden;">
 	<p>
 		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
 	</p>
@@ -430,7 +370,7 @@ require_once "./includes/trunk_config.php";
 		</p>
 </div>
 
-<div id = "progress" title = "TrunkSMS" style = "visibility: hidden;">
+<div id = "progress" title = "<?php echo $sitename ?>" style = "visibility: hidden;">
 <div id = "progress_upperMesg"></div>
 
 <div id="progressbar"></div>
@@ -443,9 +383,6 @@ require_once "./includes/trunk_config.php";
 
 <div id = "after_body">
 <div id="footer"><?php include("./includes/footer.php") ?></div><!-- *DONT* REMOVE THIS -->
-</div> <!-- end after_body -->
 
-
-</div> <!-- end Tbody -->
 </body>
 </html>

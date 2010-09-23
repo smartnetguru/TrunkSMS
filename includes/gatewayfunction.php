@@ -4,7 +4,7 @@
  * 
  * @author  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com
  * @version 0.1
- * @License
+ * @License GPL
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +22,15 @@
  */
 require_once "../includes/trunk_config.php";
 $trunksmsphoneno = TRUNKSMS_PHONE_NO;
-$trunksmspassword = md5(TRUNKSMS_PASSWORD); //your password is encrypted before sending to trunksms
+$trunksmspassword = md5(TRUNKSMS_PASSWORD); //your password is encrypted before sending to trunksms u can also leave it without encryption if you dont care but encryption must be done with md5 algorithm
+$url = "http://www.trunksms.com/API/GET/index.php?";
+//$url = "http://www.trunksms.com/API/XML/index.php?"; //alternative choice
 
 function CRONsendToTrunkSMS($smsname,$phone,$smsMessage){
-global $trunksmsphoneno, $trunksmspassword;
+global $trunksmsphoneno, $trunksmspassword,$url;
 $x = 0; //false
 
-$url = "http://www.trunksms.com/API/index.php?";
+
 
 $phone = parsePhoneNum($phone); //the input number as to undergo purification
 //$_SESSION['message'] = rawurlencode(htmlentities($smsMessage));
@@ -67,22 +69,22 @@ return $x;
 
 
 function sendToTrunkSMS($smsname,$phone,$smsMessage){
-global $trunksmsphoneno, $trunksmspassword;
+global $trunksmsphoneno, $trunksmspassword,$url;
 $x = 0; //false
-
-$url = "http://www.trunksms.com/API/index.php?";
 
 $phone = parsePhoneNum($phone); //the input number as to undergo purification
 //$_SESSION['message'] = rawurlencode(htmlentities($smsMessage));
 
-$query = "phoneno=" . urlencode($trunksmsphoneno) . "&passwd=" . urlencode($trunksmspassword) . "&message=" . urlencode($smsMessage) . "&sendtonum=" . urlencode($phone) . "&smsname=" . urlencode($smsname);
+$query = "phoneno=" . urlencode($trunksmsphoneno) . "&passwd=" . urlencode($trunksmspassword) . "&message=" . urlencode($smsMessage) . "&sendtonum=" . urlencode($phone) . "&smsname=" . urlencode($smsname); 
 //url encode the query
 
 $url= $url.$query;
 
+//$_SESSION['message'] .= $url; //uncoment this to debug
 
 $response = @file_get_contents($url);
 
+//$_SESSION['message'] .= $response; //uncoment this to debug
 
 list($version, $status_code, $msg) = explode(' ', $http_response_header[0], 3);
 
@@ -143,5 +145,6 @@ return $raw;
 }
 
 }
+
 
 ?>

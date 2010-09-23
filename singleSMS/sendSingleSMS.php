@@ -59,7 +59,7 @@ if(strlen($_SESSION['phoneNo']) > 0){
 				$_SESSION['message'] .= "<p>Dear User, Your SMS Will be sent to " . $phoneNumber . " ". $date . " at " . $time . "<br/></p>";
 				}else{
 				
-				$_SESSION['message'] .= "<p>Dear User, The Sheduling features of TrunkSMS will be coming up soon. Thanks<br/></p>";
+				$_SESSION['message'] .= "<p>Dear User, The Sheduling features of this site will be coming up soon. Thanks<br/></p>";
 				}
 				echo $_SESSION['message'];
 				exit();
@@ -98,7 +98,7 @@ global $conn, $units;
 $message = substr($smsMessage, 0, 160);//send 1 message
 
 		
-	$result = sendToTrunkSMS($smsname,$phone,$smsMessage); //returns bool
+	$result = sendToTrunkSMS($smsname,$phone,$message); //returns bool
 	
 		if($result){ //this section represents clickAtel
 		$units = $units - 1;
@@ -121,13 +121,13 @@ $_SESSION['balance'] = $_SESSION['balance'] - 1;
 		////////////////////////////////////////////////////////////////////////
 		$status_msg = htmlentities($_SESSION['message']);
 
-		$sql = "INSERT INTO TRUNKsent (`id`, `org`, `phoneNo`, `toNum`, `mesg`, `fromNa`, `units`, `statusMsg`, `date`, `sent`) VALUES (NULL, '{$_SESSION['name']}', '{$_SESSION['phoneNo']}', '$phone', '$smsMessage', '$smsname', '$units', '$status_msg', NOW(), '$sentStatus')";
+		$sql = "INSERT INTO TRUNKsent (`id`, `org`, `phoneNo`, `toNum`, `mesg`, `fromNa`, `units`, `statusMsg`, `date`, `sent`) VALUES (NULL, '{$_SESSION['name']}', '{$_SESSION['phoneNo']}', '$phone', '$message', '$smsname', '$units', '$status_msg', NOW(), '$sentStatus')";
 	
 		$result = @mysql_query($sql);
 		/////////////////////////////////////////////////////////////////
 			
 		$nextMesg = trim(str_replace($message, "", $smsMessage));
-		$count = strlen($nextMesg);
+		$count = strlen(trim($nextMesg));
 		if($count > 0 && $units > 0){
 		sendSMS($phone,$smsname,$nextMesg); //a recursive call	
 		}

@@ -21,6 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 -->
+<?php
+require_once "./includes/trunk_config.php";
+$sitename = WEBSITE_ADDRESS;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -29,9 +33,9 @@
 <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" media="all" type="text/css" href="./css/menu_style.css" />
-<title>Welcome to TrunkSMS.com A platform to send multiple SMS to Nigerian Mobile Networks</title>
-<META name="description" content = "TrunkSMS lets you Send Bulk SMS to all Mobile Networks in Nigeria in one Click">
-<META name="keywords" content = "TrunkSMS, Send Bulk SMS,  send free SMS, Cheap SMS, affordable SMS, website that you can send free sms, Nigeria, MTN Nigeria, Zain, Glo Nigeria">
+<title>Send Bulk SMS From Internet to Mobile Phone</title>
+<META name="description" content = "Send Bulk SMS From Internet to Mobile Phones">
+<META name="keywords" content = "Bulk SMS, Free SMS, SMS, Mobile Technology">
 	<link type="text/css" href="./jquery/css/ui-lightness/jquery-ui-1.8.custom.css" rel="stylesheet" />
 	
 	<script type = "text/javascript" src ="./presentation/jqueryaddition.js"></script>
@@ -130,31 +134,10 @@ white-space:nowrap;
 }
 </style>
 
-<script type = "text/javascript">function notify(){document.getElementById("loading").innerHTML="";document.getElementById("Tbody").style.visibility=""};
-</script>
-
-<script type="text/javascript">
-var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-17805253-1"]);_gaq.push(["_trackPageview"]);(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();
-</script>
-
 </head>
 
-<body onLoad = "getAccountInfo(); notify();">
+<body onLoad = "getAccountInfo();">
 
-
-<div id = "loading" style = "font-size: 40px; color: #336633;">Loading, Please Wait..
-<div class="ui-widget">
-			<div class="ui-state-default ui-corner-all " style="margin-top: 20px; padding: 2px; font-size: 13px; color: #336633;"> 
-			
-Please wait while TrunkSMS gets loaded. Slow network connection? Click <a href = "./slow/">here</a> for a design with less funtionality.
-
- </div><!-- ui-state -->
- 
- </div><!-- ui-widget -->
-
-</div>
-
-<div id = "Tbody" style = "visibility: hidden;">
 
 
 <div id = "header"><?php include "./includes/top_header.php" ?></div>
@@ -165,7 +148,7 @@ Please wait while TrunkSMS gets loaded. Slow network connection? Click <a href =
 <div id="topsection">
 <div class="innertube">
 <?php
-include("includes/logo.php");
+include("./includes/logo.php");
 ?>
 <img src = "./images/yourworld.gif">
 
@@ -186,7 +169,7 @@ include("includes/logo.php");
 <div class="ui-widget">
 			<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
 				<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-				<strong>Hey! </strong><?php include "./includes/advert_text.php"; ?></p>
+Works on all browser except in I.E where you will have to tell me if it works fine</p>
 			</div>
 
 		</div>
@@ -214,7 +197,7 @@ include("includes/logo.php");
 
 <div id = "transferingcred" style = "margin-left: 15px;"><table><tr><td><img src = "./images/trunkons/billing.png"></td><td><h5><a href= "" onClick = "getTransferSMSForm(); return false;">Transfer Credits</a></h5></td></tr></table></div> <!-- end upload contact from friendTool-->   
 
-<div id = "uploadCSV" style = "margin-left: 15px;"><table><tr><td><img src = "./images/trunkons/upload.png"></td><td><h5><a href= "" onClick = "getCSV_form(); return false;" title = "Upload the phonebook file exported by TrunkSMS Software">Upload Contacts CSV</a></h5></td></tr></table></div><!-- end uploadCSV-->
+<div id = "uploadCSV" style = "margin-left: 15px;"><table><tr><td><img src = "./images/trunkons/upload.png"></td><td><h5><a href= "" onClick = "getCSV_form(); return false;" title = "Upload the phonebook file exported by a third party Software">Upload Contacts CSV</a></h5></td></tr></table></div><!-- end uploadCSV-->
 
 <div id = "quee" style = "margin-left: 15px;"><table><tr><td><img src = "./images/trunkons/administrative-docs.png"></td><td><h5><a href= "" onClick = "getquee(); return false;" title = "Click me to see the SMS you scheduled and what happened to it">Queued Messages</a></h5></td></tr></table></div><!-- end quee-->
 
@@ -224,7 +207,7 @@ include("includes/logo.php");
     </div><!-- end phoneBooks-->
     
     <div id = "hidendialogs" style= "visibility: hidden;">
-<div id="dialog-message" title="TrunkSMS" style= "visibility: hidden;">
+<div id="dialog-message" title="<?php echo $sitename ?>" style= "visibility: hidden;">
 	<p>
 		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
 	</p>
@@ -236,14 +219,14 @@ include("includes/logo.php");
 		</p>
 </div>
 
-<div id = "progress" title = "TrunkSMS" style = "visibility: hidden;">
+<div id = "progress" title = "<?php echo $sitename ?>" style = "visibility: hidden;">
 <div id = "progress_upperMesg"></div>
 
 <div id="progressbar"></div>
 
 </div><!-- end progress -->
 
-<div id="dialog" title="TrunkSMS.com">
+<div id="dialog" title="<?php echo $sitename ?>">
 
 		</div><!-- end dialog -->
 			
@@ -279,12 +262,7 @@ include("includes/logo.php");
 </div><!-- end of rightcolum -->
 </div><!-- end of maincontainer -->
 
-<div id = "after_body">
-
 
 <div id="footer"><?php include("./includes/footer.php") ?></div> <!-- *DONT* REMOVE THE COPYLEFT NOTICE -->
-</div> <!-- end after_body -->
-
-</div> <!-- Tbody -->
 </body>
 </html>

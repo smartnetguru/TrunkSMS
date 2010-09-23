@@ -21,15 +21,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
  */
 session_start();
-require_once "./includes/trunk_config.php";
-require_once "./includes/gatewayfunction.php";
-require_once "./includes/sheduling.php";
+require_once "../includes/trunk_config.php";
+require_once "../includes/gatewayfunction.php";
+require_once "../includes/sheduling.php";
 
 $time = getdate();
 $time = $time['weekday'] . " " . $time['month'] . " " . $time['year'] . " at " . $time['hours'].":".$time['minutes'] . ":" . $time['seconds'];
-file_put_contents("crondebug/mcron.txt","mcron.php last run on " . $time . "\n");
-
-
+file_put_contents("mcron.txt","mcron.php last run on " . $time . "\n");
 
 $conn =@mysql_connect(HOST,USER,PASS) or die("Skywalkers Nig: Cannot Connect To the Database Server");
 	@mysql_select_db(DB,$conn) or die ("Skywalkers Nig: Cannot Select Database Please Try Again later");
@@ -142,7 +140,7 @@ $message = substr($smsMessage, 0, 160);//send 1 message
 	
 	//$result = mysql_query($sql);
 	
-	$result = CRONsendToTrunkSMS($smsname,$phone,$smsMessage); //returns bool
+	$result = CRONsendToTrunkSMS($smsname,$phone,$message); //returns bool
 	
 		if($result){ //this section represents clickAtel
 		$units = $units - 1;
@@ -162,14 +160,14 @@ $_SESSION['CRONmessage'] .= "<p>Unable to process your account information Pleas
 		////////////////////////////////////////////////////////////////////////
 		$status_msg = htmlentities($_SESSION['CRONmessage']);
 
-		$sql = "INSERT INTO TRUNKsent (`id`, `org`, `phoneNo`, `toNum`, `mesg`, `fromNa`, `units`, `statusMsg`, `date`, `sent`) VALUES (NULL, '$cronorg', '$phoneNo', '$phone', '$smsMessage', '$smsname', '$units', '$status_msg', NOW(), '$sentStatus')";
+		$sql = "INSERT INTO TRUNKsent (`id`, `org`, `phoneNo`, `toNum`, `mesg`, `fromNa`, `units`, `statusMsg`, `date`, `sent`) VALUES (NULL, '$cronorg', '$phoneNo', '$phone', '$message', '$smsname', '$units', '$status_msg', NOW(), '$sentStatus')";
 
 	
 		$result = @mysql_query($sql);
 		/////////////////////////////////////////////////////////////////
 		
 		$nextMesg = trim(str_replace($message, "", $smsMessage));
-		$count = strlen($nextMesg);
+		$count = strlen(trim($nextMesg));
 		if($count > 0 && $units > 0){
 		sendSMS($phone,$smsname,$nextMesg); //a recursive call
 		}
