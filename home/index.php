@@ -344,7 +344,7 @@ Use Free 'n' Open Source Technologies
     <div class="ui-widget">
 			<div class="ui-state-default ui-corner-all " style="margin-top: 20px; padding: 2px; font-size: 13px; color: #336633;"> 
 			
-<div id = "address"><address>Contact us information here</address></div>
+<div id = "address"><address>Rukuba Road P.O Box 13278 Jos, Plateau State Nigeria</address></div>
  </div><!-- ui-state -->
  
  </div><!-- ui-widget -->

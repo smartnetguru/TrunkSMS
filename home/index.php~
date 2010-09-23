@@ -145,7 +145,7 @@ include("includes/logo.php");
 <div class="ui-widget">
 			<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
 				<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-TrunkSMS works on all browser except in I.E where you will have email me to tell me if it works</p>
+TrunkSMS works on all browser except in I.E where you will have to email me to tell me if it works</p>
 			</div>
 
 		</div>
@@ -262,8 +262,8 @@ Use Free 'n' Open Source Technologies
 			<div class="ui-state-default ui-corner-all" style="margin-top: 20px; padding: 2px; font-size: 13px;"> 
 
 <p>
- <b>author:  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com<br/>
- version: 0.1<br/>
+ <b>Author:  Daser Solomon Sunday songofsongs2k5@gmail.com,  daser@trunksms.com<br/>
+ Version: 0.1<br/>
  License: GPL<br/>
  Modification is welcome at www.github.com/trunksms</b><br/>
  <p>
